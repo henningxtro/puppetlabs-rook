@@ -60,8 +60,6 @@ class rook::storage_class (
   exec { 'Apply CRD':
     command     => 'kubectl apply -f crds.yaml',
     cwd         => '/tmp/modules/rook/data',
-    subscribe   => File['/tmp/modules/rook/data/crds.yaml'],
-    refreshonly => true,
     before      => Exec['Create rook cluster'],
     require     => File['/tmp/modules/rook/data/crds.yaml'],
   }
