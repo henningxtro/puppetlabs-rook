@@ -26,7 +26,12 @@ class rook::storage_class (
         content => template("rook/${file}.erb"),
         }
     }
-
+  
+  file { "/tmp/modules/rook/data/crds.yaml":
+    ensure => file,
+    path => "/tmp/modules/rook/data/crds.yaml"
+  }
+  
   exec { 'Create rook namespace':
     command => 'kubectl create namespace rook',
     unless  => 'kubectl get namespace | grep rook',
