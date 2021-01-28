@@ -10,7 +10,7 @@ class rook::storage_class (
 
 ) {
 
-  $rook_files = ['rook-operator.yaml','rook-cluster.yaml','rook-storage.yaml','crds.yaml']
+  $rook_files = ['rook-operator.yaml','rook-cluster.yaml','rook-storage.yaml']
 
   Exec {
     path        => $path,
@@ -59,11 +59,11 @@ class rook::storage_class (
 
   exec { 'Apply CRD':
     command     => 'kubectl apply -f crds.yaml',
-    cwd         => '/tmp',
-    subscribe   => File['/tmp/crds.yaml'],
+    cwd         => '/tmp/modules/rook/data',
+    subscribe   => File['/tmp/modules/rook/crds.yaml'],
     refreshonly => true,
     before      => Exec['Create rook cluster'],
-    require     => File['/tmp/crds.yaml'],
+    require     => File['/tmp/modules/rook/crds.yaml'],
   }
 
   exec { 'Create rook cluster':
