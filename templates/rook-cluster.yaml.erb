@@ -1,15 +1,23 @@
-apiVersion: rook.io/v1alpha1
-kind: Cluster
+apiVersion: ceph.rook.io/v1
+kind: CephCluster
 metadata:
   name: rook
   namespace: rook
 spec:
-  versionTag: <%= @version %>
+  cephVersion:
+    image: ceph/ceph:v15.2.8
   dataDirHostPath: /var/lib/rook
+  mon:
+    count: 2
+    allowMultiplePerNode: false
+  dashboard:
+    enabled: true
   storage:
     useAllNodes: true
     useAllDevices: false
-    storeConfig:
-      storeType: filestore
+    deviceFilter:
+    config:
+      metadataDevice:
       databaseSizeMB: 1024
       journalSizeMB: 1024
+      osdsPerDevice: 1
