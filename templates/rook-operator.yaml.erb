@@ -122,7 +122,7 @@ spec:
       serviceAccountName: rook-operator
       containers:
       - name: rook-operator
-        image: rook/ceph:latest
+        image: rook/ceph
         args: ["operator"]
         env:
         - name: ROOK_MON_OUT_TIMEOUT
