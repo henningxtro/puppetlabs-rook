@@ -5,6 +5,6 @@ class rook::params {
 
   $env             = ['HOME=/root', 'KUBECONFIG=/etc/kubernetes/admin.conf']
   $path            = ['/usr/bin', '/bin']
-  $version         = 'v0.7.0'
+  $version         = 'v1.3.11-8'
   $default_storage = true
 }
