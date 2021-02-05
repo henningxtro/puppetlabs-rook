@@ -16,8 +16,8 @@ class rook::storage_class (
     path        => $path,
     environment => $env,
     logoutput   => true,
-    tries       => 10,
-    try_sleep   => 30,
+    tries       => 5,
+    try_sleep   => 15,
   }
 
   $rook_files.each | String $file | {
