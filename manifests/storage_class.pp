@@ -32,6 +32,11 @@ class rook::storage_class (
     path => "/tmp/modules/rook/data/crds.yaml"
   }
   
+  file { "/tmp/modules/rook/data/common.yaml":
+    ensure => file,
+    path => "/tmp/modules/rook/data/common.yaml"
+  }
+
   exec { 'Create rook namespace':
     command => 'kubectl create namespace rook; kubectl create namespace rook-system',
     unless  => 'kubectl get namespace | grep rook',
@@ -63,10 +68,11 @@ class rook::storage_class (
   }
 
   exec { 'Apply CRD':
-    command     => 'kubectl apply -f crds.yaml',
+    command     => 'kubectl apply -f crds.yaml -f common.yaml',
     cwd         => '/tmp/modules/rook/data',
     before      => Exec['Create rook cluster'],
     require     => File['/tmp/modules/rook/data/crds.yaml'],
+    require     => File['/tmp/modules/rook/data/common.yaml'],
   }
 
   exec { 'Create rook cluster':
