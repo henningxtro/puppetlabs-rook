@@ -49,9 +49,9 @@ class rook::storage_class (
   }
 
   exec {'Checking for the Rook operator to be ready':
-    command   => 'kubectl get pods -n rook-system| grep rook-operator | grep -w Running',
+    command   => 'kubectl get pods -n rook-system| grep rook-ceph-operator | grep -w Running',
     logoutput => true,
-    unless    => 'kubectl get pods -n rook-system| grep rook-operator | grep -w Running',
+    unless    => 'kubectl get pods -n rook-system| grep rook-ceph-operator | grep -w Running',
     require   => Exec['Create rook operator'],
   }
 
