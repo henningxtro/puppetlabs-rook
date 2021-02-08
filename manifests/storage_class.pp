@@ -71,8 +71,7 @@ class rook::storage_class (
     command     => 'kubectl apply -f crds.yaml -f common.yaml',
     cwd         => '/tmp/modules/rook/data',
     before      => Exec['Create rook cluster'],
-    require     => File['/tmp/modules/rook/data/crds.yaml'],
-    require     => File['/tmp/modules/rook/data/common.yaml'],
+    require     => [ File['/tmp/modules/rook/data/crds.yaml'], File['/tmp/modules/rook/data/common.yaml'] ] ,
   }
 
   exec { 'Create rook cluster':
