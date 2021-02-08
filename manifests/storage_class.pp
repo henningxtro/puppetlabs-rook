@@ -33,7 +33,7 @@ class rook::storage_class (
   }
   
   exec { 'Create rook namespace':
-    command => 'kubectl create namespace rook',
+    command => 'kubectl create namespace rook; kubectl create namespace rook-system',
     unless  => 'kubectl get namespace | grep rook',
     before  => Exec['Create rook operator'],
 
