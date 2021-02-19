@@ -27,14 +27,16 @@ class rook::storage_class (
         }
     }
   
-  file { "/tmp/modules/rook/data/crds.yaml":
+  file { "/tmp/crds.yaml":
     ensure => file,
-    path => "/tmp/modules/rook/data/crds.yaml"
+    source  => 'puppet:///modules/rook/crds.yaml',
+
   }
   
-  file { "/tmp/modules/rook/data/common.yaml":
+  file { "/tmp/common.yaml":
     ensure => file,
-    path => "/tmp/modules/rook/data/common.yaml"
+    source  => 'puppet:///modules/rook/common.yaml',
+
   }
 
   exec { 'Create rook namespace':
