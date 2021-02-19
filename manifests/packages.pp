@@ -5,7 +5,7 @@
 class rook::packages {
 
     $rook_packages = $::operatingsystem ? {
-    /(?i:Ubuntu|Debian)/ => [ 'ceph-common', 'ceph-fs-common'],
+    /(?i:Ubuntu|Debian)/ => [ 'ceph-common'],
     /(?i:RedHat|CentOS)/ => [ 'ceph-common', 'ceph-deploy'],
     default              => [ 'ceph-common', 'ceph-fs-common'],
   }
